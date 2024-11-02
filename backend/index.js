@@ -22,7 +22,7 @@ app.use(express.json());
 //Option 2: Allow custom origins
 app.use(
   cors({
-    origin: "https://train-ticket-booking-hv8ghoxh1-afhams-projects.vercel.app",
+    origin: "https://train-ticket-booking-app.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
