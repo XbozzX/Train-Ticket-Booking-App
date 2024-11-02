@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import { Button } from "@/components/ui/button.tsx";
-import { useNavigate } from "react-router-dom";
 import {
   Select,
   SelectContent,
@@ -12,9 +10,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import DateSetup from "@/components/datePicker";
+// import DatePicker from "react-datepicker";
 
 type Props = {
   originTypeFilter: string;
@@ -33,7 +31,6 @@ const Search: React.FC<Props> = ({
   setDestinationTypeFilter,
   setDepartureDateFilter,
 }) => {
-  const navigate = useNavigate();
   return (
     <div>
       <div className=" inline-flex space-x-3">

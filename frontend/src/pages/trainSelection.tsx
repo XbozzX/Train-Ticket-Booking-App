@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
 import Axios from "axios";
-import { CodeSandboxLogoIcon } from "@radix-ui/react-icons";
 
 interface Seat {
   train_Number: string;

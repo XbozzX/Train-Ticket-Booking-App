@@ -1,11 +1,10 @@
 "use client";
 
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button.tsx";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import Search from "@/components/Search/Search";
-import { Scheduler } from "timers/promises";
 
 interface Seat {
   train_Number: string;

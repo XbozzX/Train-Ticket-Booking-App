@@ -1,10 +1,7 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import HomePages from "./pages/homePages";
 import TrainSelection from "./pages/trainSelection";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import TrainSelection1 from "./components/trainSelection1";
 import BookingDetail from "./pages/BookingDetail";
 import PaymentPages from "./pages/paymentPages";
