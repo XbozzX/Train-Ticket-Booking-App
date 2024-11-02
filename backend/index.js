@@ -30,7 +30,7 @@ app.use(
 );
 
 //create middleware for parsing the page location to the http req
-app.use("/api/trains", trainAPI);
+app.use(trainAPI);
 mongoose
   .connect(`${process.env.MONGODB_URI}`, {
     useNewUrlParser: true,

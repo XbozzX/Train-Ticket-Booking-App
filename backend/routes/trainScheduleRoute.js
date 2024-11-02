@@ -5,7 +5,7 @@ import { trainScheduleSchema } from "../models/trainSchedule.js";
 const trainScheduleRoute = express.Router();
 
 //Route for GET the train data
-trainScheduleRoute.get("/", async (request, response) => {
+trainScheduleRoute.get("/api/trains", async (request, response) => {
   try {
     const trainSchedule_data = await trainScheduleSchema.find(); //will find all the book data
     return response.status(200).json({
@@ -19,7 +19,7 @@ trainScheduleRoute.get("/", async (request, response) => {
 });
 
 // Route get  train by id
-trainScheduleRoute.get("/:_id", async (request, response) => {
+trainScheduleRoute.get("/api/trains/:_id", async (request, response) => {
   const { _id } = request.params;
   console.log("id");
   console.log(_id);
@@ -41,7 +41,7 @@ trainScheduleRoute.get("/:_id", async (request, response) => {
 });
 
 // Create the train data
-trainScheduleRoute.post("/create", async (request, response) => {
+trainScheduleRoute.post("/api/trains/create", async (request, response) => {
   try {
     // if (!request.body.trainName || !request.body.origin || !request.body.destination  ) {
     //   return response.status(400).send({ message: "All field is required" });
@@ -66,7 +66,7 @@ trainScheduleRoute.post("/create", async (request, response) => {
 });
 
 //update the seat status by id
-trainScheduleRoute.put("/:id/seats", async (request, response) => {
+trainScheduleRoute.put("/api/trains/:id/seats", async (request, response) => {
   const { id } = request.params;
   const { train_Number, seat_Number, seat_Status, seat_PaymentStatus } =
     request.body;
@@ -97,21 +97,24 @@ trainScheduleRoute.put("/:id/seats", async (request, response) => {
 });
 
 // route to update seats from "PENDING BOOKING" to "OPEN"
-trainScheduleRoute.put("/unlockPendingSeats", async (request, response) => {
-  try {
-    const result = await trainScheduleSchema.updateMany(
-      {
-        "total_seat.seat_Status": "PENDING BOOKING",
-      },
-      { $set: { "total_seat.$[seat].seat_Status": "OPEN" } },
-      { arrayFilters: [{ "seat.seat_Status": "PENDING BOOKING" }] }
-    );
+trainScheduleRoute.put(
+  "/api/trains/unlockPendingSeats",
+  async (request, response) => {
+    try {
+      const result = await trainScheduleSchema.updateMany(
+        {
+          "total_seat.seat_Status": "PENDING BOOKING",
+        },
+        { $set: { "total_seat.$[seat].seat_Status": "OPEN" } },
+        { arrayFilters: [{ "seat.seat_Status": "PENDING BOOKING" }] }
+      );
 
-    response.json({ success: true, updatedSeat: result });
-  } catch (error) {
-    console.error("Error updating seats:", error);
-    res.status(500).json({ success: false, error: "Internal server error" });
+      response.json({ success: true, updatedSeat: result });
+    } catch (error) {
+      console.error("Error updating seats:", error);
+      res.status(500).json({ success: false, error: "Internal server error" });
+    }
   }
-});
+);
 
 export default trainScheduleRoute;
