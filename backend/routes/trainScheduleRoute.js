@@ -1,12 +1,11 @@
-import express, { request, response } from "express";
+import express from "express";
 //import { Smart_DM_URL } from "./config.js";
-import { MongoClient } from "mongodb";
 import { trainScheduleSchema } from "../models/trainSchedule.js";
 
 const trainScheduleRoute = express.Router();
 
-//Route for GET the book data
-trainScheduleRoute.get("/api/trains", async (request, response) => {
+//Route for GET the train data
+trainScheduleRoute.get("/", async (request, response) => {
   try {
     const trainSchedule_data = await trainScheduleSchema.find(); //will find all the book data
     return response.status(200).json({
@@ -19,8 +18,8 @@ trainScheduleRoute.get("/api/trains", async (request, response) => {
   }
 });
 
-// Route get by id
-trainScheduleRoute.get("/api/trains/:_id", async (request, response) => {
+// Route get  train by id
+trainScheduleRoute.get("/:_id", async (request, response) => {
   const { _id } = request.params;
   console.log("id");
   console.log(_id);
@@ -41,8 +40,8 @@ trainScheduleRoute.get("/api/trains/:_id", async (request, response) => {
   }
 });
 
-// Create the train
-trainScheduleRoute.post("/api/trains/create", async (request, response) => {
+// Create the train data
+trainScheduleRoute.post("/create", async (request, response) => {
   try {
     // if (!request.body.trainName || !request.body.origin || !request.body.destination  ) {
     //   return response.status(400).send({ message: "All field is required" });
@@ -66,8 +65,8 @@ trainScheduleRoute.post("/api/trains/create", async (request, response) => {
   }
 });
 
-//update the seat status
-trainScheduleRoute.put("/api/trains/:id/seats", async (request, response) => {
+//update the seat status by id
+trainScheduleRoute.put("/:id/seats", async (request, response) => {
   const { id } = request.params;
   const { train_Number, seat_Number, seat_Status, seat_PaymentStatus } =
     request.body;
@@ -98,47 +97,21 @@ trainScheduleRoute.put("/api/trains/:id/seats", async (request, response) => {
 });
 
 // route to update seats from "PENDING BOOKING" to "OPEN"
-trainScheduleRoute.put(
-  "/api/trains/unlockPendingSeats",
-  async (request, response) => {
-    try {
-      const result = await trainScheduleSchema.updateMany(
-        {
-          "total_seat.seat_Status": "PENDING BOOKING",
-        },
-        { $set: { "total_seat.$[seat].seat_Status": "OPEN" } },
-        { arrayFilters: [{ "seat.seat_Status": "PENDING BOOKING" }] }
-      );
+trainScheduleRoute.put("/unlockPendingSeats", async (request, response) => {
+  try {
+    const result = await trainScheduleSchema.updateMany(
+      {
+        "total_seat.seat_Status": "PENDING BOOKING",
+      },
+      { $set: { "total_seat.$[seat].seat_Status": "OPEN" } },
+      { arrayFilters: [{ "seat.seat_Status": "PENDING BOOKING" }] }
+    );
 
-      response.json({ success: true, updatedSeat: result });
-    } catch (error) {
-      console.error("Error updating seats:", error);
-      res.status(500).json({ success: false, error: "Internal server error" });
-    }
+    response.json({ success: true, updatedSeat: result });
+  } catch (error) {
+    console.error("Error updating seats:", error);
+    res.status(500).json({ success: false, error: "Internal server error" });
   }
-);
-
-// const uri =
-//   "mongodb+srv://muhammadafhamnazri:vhJ5tSpYaNHHM1fW@cluster0.h6yb7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-// const client = new MongoClient(uri);
-
-// trainBookingRoute.get("/", async (req, res) => {
-//   try {
-//     await client.connect();
-//     const database = client.db("XbozzX"); // replace with your database name
-//     const collection = database.collection("trainSchedule"); // replace with your collection name
-
-//     const trainData = await collection.find({}).toArray();
-
-//     console.log(trainData);
-//     return res.status(200).json({
-//       count: trainData.length, //create count for the json data
-//       data: trainData, //get the book data
-//     });
-//   } catch (error) {
-//     console.log(error.message);
-//     res.status(500).send(error.message);
-//   }
-// });
+});
 
 export default trainScheduleRoute;

@@ -6,6 +6,7 @@ import cron from "node-cron";
 import Axios from "axios";
 import dotenv from "dotenv";
 
+const BASE_URL = "https://train-ticket-booking-app-cty1.vercel.app";
 dotenv.config();
 
 const app = express();
@@ -29,7 +30,7 @@ app.use(
 );
 
 //create middleware for parsing the page location to the http req
-app.use(trainAPI);
+app.use("/api/trains", trainAPI);
 mongoose
   .connect(`${process.env.MONGODB_URI}`)
   .then(() => {
@@ -48,7 +49,7 @@ mongoose
 
     cron.schedule("*/2 * * * *", async () => {
       try {
-        await Axios.put("http://localhost:5555/api/trains/unlockPendingSeats");
+        await Axios.put(`${BASE_URL}/api/trains/unlockPendingSeats`);
         console.log("Unlocked pending booking seats successfully");
       } catch (error) {
         console.error("Error unlocking seats:", error);
