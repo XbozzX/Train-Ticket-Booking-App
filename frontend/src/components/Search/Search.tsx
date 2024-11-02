@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 import "react-datepicker/dist/react-datepicker.css";
 import DateSetup from "@/components/datePicker";
-// import DatePicker from "react-datepicker";
+import DatePicker from "react-datepicker";
 
 type Props = {
   originTypeFilter: string;
@@ -74,7 +74,7 @@ const Search: React.FC<Props> = ({
           </SelectContent>
         </Select>
 
-        <DateSetup
+        {/* <DateSetup
           selected={departureDateFilter ? new Date(departureDateFilter) : null}
           onChange={(date: Date | null) =>
             setDepartureDateFilter(date ? date.toISOString().split("T")[0] : "")
@@ -82,18 +82,18 @@ const Search: React.FC<Props> = ({
           className="w-[180px] border rounded px-2"
           placeholderText="Select Date"
           dateFormat="yyyy-MM-dd"
-        />
+        /> */}
 
         {/* Date Picker for Departure Date */}
-        {/* <DatePicker
+        <DatePicker
           selected={departureDateFilter ? new Date(departureDateFilter) : null}
           onChange={(date) =>
             setDepartureDateFilter(date ? date.toISOString().split("T")[0] : "")
           }
-          className="w-[280px] border rounded px-2"
+          className=" w-[180px] border rounded p-1 border-solid  px-2 "
           placeholderText="Select Date"
           dateFormat="yyyy-MM-dd"
-        /> */}
+        />
 
         {/* < for destination /> */}
         <Select>
