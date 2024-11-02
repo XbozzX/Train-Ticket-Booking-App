@@ -1,0 +1,30 @@
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 40px);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.seat.available {
+  background-color: #e0ffe0;
+}
+
+.seat.selected {
+  background-color: #0066cc;
+  color: #fff;
+}
+
+.seat.unavailable {
+  background-color: #ffcccc;
+  cursor: not-allowed;
+}
