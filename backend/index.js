@@ -1,5 +1,4 @@
 import express from "express";
-import { PORT, Smart_DM_URL } from "./config.js";
 import { mongoose } from "mongoose";
 import trainAPI from "./routes/trainScheduleRoute.js";
 import cors from "cors";
@@ -17,17 +16,17 @@ app.use(express.json());
 //create middleware for handling CORS POLICY -- PLACE THIS CORS UPDATE FOR THE NODE.JS READ IT FIRST OR IT WILL GIVE CORS POLICY ISSUE
 //Option 1: Allow all Origin with default of cors(*)
 
-app.use(cors());
+// app.use(cors());
 
 //Option 2: Allow custom origins
-// app.use(
-//   cors({
-//     origin: "https://book-store-pi-five.vercel.app",
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     allowedHeaders: ["Content-Type"],
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: "https://train-ticket-booking-hv8ghoxh1-afhams-projects.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
+  })
+);
 
 //create middleware for parsing the page location to the http req
 app.use(trainAPI);
@@ -37,9 +36,9 @@ mongoose
     console.log("Connect");
 
     // localport setup
-    // app.listen(PORT, () => {
-    //   console.log(`App is listening to port: ${PORT}`);
-    // });
+    app.listen(`${process.env.PORT}`, () => {
+      console.log(`App is listening to port: ${process.env.PORT}`);
+    });
 
     // route for http setup
     // app.get("/", (req, res) => {

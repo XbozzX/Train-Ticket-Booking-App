@@ -41,7 +41,7 @@ trainScheduleRoute.get("/api/trains/:_id", async (request, response) => {
   }
 });
 
-// Create event
+// Create the train
 trainScheduleRoute.post("/api/trains/create", async (request, response) => {
   try {
     // if (!request.body.trainName || !request.body.origin || !request.body.destination  ) {
@@ -66,7 +66,7 @@ trainScheduleRoute.post("/api/trains/create", async (request, response) => {
   }
 });
 
-//update
+//update the seat status
 trainScheduleRoute.put("/api/trains/:id/seats", async (request, response) => {
   const { id } = request.params;
   const { train_Number, seat_Number, seat_Status, seat_PaymentStatus } =
