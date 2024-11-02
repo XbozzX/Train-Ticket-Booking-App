@@ -41,10 +41,10 @@ mongoose
     });
 
     // route for http setup
-    // app.get("/", (req, res) => {
-    //   console.log(req);
-    //   return res.status(234).send("Welcome bro");
-    // });
+    app.get("/", (req, res) => {
+      console.log(req);
+      return res.status(234).send("welcome cheater");
+    });
 
     cron.schedule("*/2 * * * *", async () => {
       try {
