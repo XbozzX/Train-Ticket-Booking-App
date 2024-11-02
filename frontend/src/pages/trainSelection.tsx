@@ -30,11 +30,12 @@ const trainSelection: React.FC = () => {
   );
   const [coachSelector, setCoachSelector] = useState<string>("A");
   const { trainId } = location.state || {};
-  console.log(trainId);
-  console.log(trainSchedules);
+  const BASE_URL = "https://train-ticket-booking-app-cty1.vercel.app";
+  // console.log(trainId);
+  // console.log(trainSchedules);
 
   useEffect(() => {
-    Axios.get(`http://localhost:5555/api/trains/${trainId}`)
+    Axios.get(`${BASE_URL}/api/trains/${trainId}`)
       .then((res) => {
         setTrainSchedules(res.data.data);
         console.log(res.data.data);

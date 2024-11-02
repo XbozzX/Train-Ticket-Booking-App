@@ -27,6 +27,7 @@ const paymentPages: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const BookingDetails = location.state as BookingDetailsProps;
+  const BASE_URL = "https://train-ticket-booking-app-cty1.vercel.app";
 
   // Handle payment initiation
   const handlePayment = async (train: BookingDetailsProps, seat: Seat) => {
@@ -35,7 +36,7 @@ const paymentPages: React.FC = () => {
 
     try {
       const response: any = await Axios.put(
-        `http://localhost:5555/api/trains/${BookingDetails.trainId}/seats`,
+        `${BASE_URL}/api/trains/${BookingDetails.trainId}/seats`,
         {
           train_Number: BookingDetails.selectedSeat.train_Number,
           seat_Number: BookingDetails.selectedSeat.seat_Number,

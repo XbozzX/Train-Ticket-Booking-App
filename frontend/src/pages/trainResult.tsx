@@ -36,11 +36,12 @@ const TrainResults: React.FC = () => {
   const origin = queryParams.get("origin") || "";
   const destination = queryParams.get("destination") || "";
   const departureDate = queryParams.get("departureDate") || "";
+  const BASE_URL = "https://train-ticket-booking-app-cty1.vercel.app";
 
   useEffect(() => {
     const fetchTrainSchedules = async () => {
       try {
-        const response = await Axios.get("http://localhost:5555/api/trains");
+        const response = await Axios.get(`${BASE_URL}/api/trains`);
         const data = response.data.data;
 
         const filteredSchedules = data.filter((schedule: TrainSchedule) => {

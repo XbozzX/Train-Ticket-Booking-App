@@ -27,6 +27,7 @@ const BookingDetail: React.FC = () => {
   const location = useLocation();
   // const { id } = useParams();
   const BookingDetails = location.state as BookingDetailsProps;
+  const BASE_URL = "https://train-ticket-booking-app-cty1.vercel.app";
   // console.log(BookingDetails.trainId);
   // const [trainSchedules, setTrainSchedules] = useState<BookingDetailsProps[]>(
   //   []
@@ -34,7 +35,7 @@ const BookingDetail: React.FC = () => {
   const handleBookingClick = async (train: BookingDetailsProps, seat: Seat) => {
     try {
       const response: any = await Axios.put(
-        `http://localhost:5555/api/trains/${BookingDetails.trainId}/seats`,
+        `${BASE_URL}/api/trains/${BookingDetails.trainId}/seats`,
         {
           train_Number: BookingDetails.selectedSeat.train_Number,
           seat_Number: BookingDetails.selectedSeat.seat_Number,
