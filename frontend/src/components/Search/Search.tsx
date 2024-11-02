@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import "react-datepicker/dist/react-datepicker.css";
-import DateSetup from "@/components/datePicker";
+// import DateSetup from "@/components/datePicker";
 import DatePicker from "react-datepicker";
 
 type Props = {
