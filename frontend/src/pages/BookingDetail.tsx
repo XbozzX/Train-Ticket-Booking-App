@@ -65,7 +65,6 @@ const BookingDetail: React.FC = () => {
             selectedSeat: seat,
           },
         });
-        console.log(train);
       } else {
         console.log("Unexpected response status:", response?.status);
       }
