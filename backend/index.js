@@ -6,7 +6,7 @@ import cron from "node-cron";
 import Axios from "axios";
 import dotenv from "dotenv";
 
-const BASE_URL = "https://train-ticket-booking-app-cty1.vercel.app";
+const BASE_URL = "https://train-ticket-booking-app-pxmd.onrender.com";
 dotenv.config();
 
 const app = express();
@@ -45,10 +45,10 @@ mongoose
     });
 
     // route for http setup
-    // app.get("/", (req, res) => {
-    //   console.log(req);
-    //   return res.status(234).send("welcome cheater");
-    // });
+    app.get("/", (req, res) => {
+      console.log(req);
+      return res.status(234).send("welcome cheater");
+    });
 
     cron.schedule("*/2 * * * *", async () => {
       try {

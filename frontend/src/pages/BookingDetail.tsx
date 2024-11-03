@@ -27,7 +27,7 @@ const BookingDetail: React.FC = () => {
   const location = useLocation();
   // const { id } = useParams();
   const BookingDetails = location.state as BookingDetailsProps;
-  const BASE_URL = "https://train-ticket-booking-app-cty1.vercel.app";
+  const BASE_URL = "https://train-ticket-booking-tvtc.onrender.com";
   // console.log(BookingDetails.trainId);
   // const [trainSchedules, setTrainSchedules] = useState<BookingDetailsProps[]>(
   //   []

@@ -30,7 +30,7 @@ const trainSelection: React.FC = () => {
   );
   const [coachSelector, setCoachSelector] = useState<string>("A");
   const { trainId } = location.state || {};
-  const BASE_URL = "https://train-ticket-booking-app-cty1.vercel.app";
+  const BASE_URL = "https://train-ticket-booking-tvtc.onrender.com";
   // console.log(trainId);
   // console.log(trainSchedules);
 
