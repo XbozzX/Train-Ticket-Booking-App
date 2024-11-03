@@ -30,7 +30,7 @@ app.use(
 );
 
 //create middleware for parsing the page location to the http req
-app.use(trainAPI);
+app.use("/api/trains", trainAPI);
 mongoose
   .connect(`${process.env.MONGODB_URI}`, {
     useNewUrlParser: true,
@@ -45,10 +45,10 @@ mongoose
     });
 
     // route for http setup
-    app.get("/", (req, res) => {
-      console.log(req);
-      return res.status(234).send("welcome cheater");
-    });
+    // app.get("/", (req, res) => {
+    //   console.log(req);
+    //   return res.status(234).send("welcome cheater");
+    // });
 
     cron.schedule("*/2 * * * *", async () => {
       try {
