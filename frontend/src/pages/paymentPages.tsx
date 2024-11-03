@@ -27,7 +27,7 @@ const paymentPages: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const BookingDetails = location.state as BookingDetailsProps;
-  const BASE_URL = "https://train-ticket-booking-tvtc.onrender.com";
+  const BASE_URL = "https://train-ticket-booking-app-pxmd.onrender.com";
 
   // Handle payment initiation
   const handlePayment = async (train: BookingDetailsProps, seat: Seat) => {

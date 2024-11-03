@@ -35,7 +35,7 @@ const homePages: React.FC = () => {
   const [originTypeFilter, setOriginTypeFilter] = useState("");
   const [destinationTypeFilter, setDestinationTypeFilter] = useState("");
   const [departureDateFilter, setDepartureDateFilter] = useState("");
-  const BASE_URL = "https://train-ticket-booking-tvtc.onrender.com";
+  const BASE_URL = "https://train-ticket-booking-app-pxmd.onrender.com";
 
   useEffect(() => {
     const fetchTrainSchedules = () => {

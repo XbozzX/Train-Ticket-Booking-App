@@ -36,7 +36,7 @@ const TrainResults: React.FC = () => {
   const origin = queryParams.get("origin") || "";
   const destination = queryParams.get("destination") || "";
   const departureDate = queryParams.get("departureDate") || "";
-  const BASE_URL = "https://train-ticket-booking-tvtc.onrender.com";
+  const BASE_URL = "https://train-ticket-booking-app-pxmd.onrender.com";
 
   useEffect(() => {
     const fetchTrainSchedules = async () => {
