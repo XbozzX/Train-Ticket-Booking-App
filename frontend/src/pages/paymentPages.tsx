@@ -106,7 +106,7 @@ const paymentPages: React.FC = () => {
             <TableCell className="font-medium">
               {BookingDetails.trainName}
             </TableCell>
-            <TableCell>Paid</TableCell>
+            <TableCell>PENDING PAYMENT</TableCell>
             <TableCell>{BookingDetails.origin}</TableCell>
             <TableCell>{BookingDetails.destination}</TableCell>
             <TableCell>{BookingDetails.departureDate}</TableCell>
