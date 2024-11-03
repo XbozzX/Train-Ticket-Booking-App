@@ -70,7 +70,6 @@ const trainSelection: React.FC = () => {
   return (
     // <TODO: THE TRAIN._ID NEVER CHANGE,,, SO IT WILL POINTING TO THE 1 DATA .... NEED TO FIX/>
     <div>
-      <p>Train Selection : {trainId}</p>
       <div className=" m-4 p-4 border rounded-lg">
         <h2 className=" text-lg font-bold">
           {trainSchedules.trainName} - {trainSchedules.origin} to

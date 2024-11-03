@@ -96,11 +96,9 @@ const BookingDetail: React.FC = () => {
             <TableCell className="font-medium">
               {BookingDetails.trainName}
             </TableCell>
-            <TableCell>
-              {BookingDetails.selectedSeat.seat_PaymentStatus}
-            </TableCell>
-            <TableCell>{BookingDetails.origin}</TableCell>
             <TableCell>PENDING PAYMENT</TableCell>
+            <TableCell>{BookingDetails.origin}</TableCell>
+            <TableCell>{BookingDetails.destination}</TableCell>
             <TableCell>{BookingDetails.departureDate}</TableCell>
             <TableCell>{BookingDetails.departureTime}</TableCell>
             <TableCell>{BookingDetails.arrivalTime}</TableCell>
