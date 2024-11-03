@@ -31,7 +31,7 @@ trainScheduleRoute.get("/:_id", async (request, response) => {
     }
 
     response.status(200).json({ data: train });
-    console.log("test");
+    // console.log("test");
     // console.log(data);
   } catch (error) {
     response
