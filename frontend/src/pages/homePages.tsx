@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button.tsx";
 import { useNavigate } from "react-router-dom";
@@ -25,10 +23,6 @@ interface TrainSchedule {
   total_seat: Seat[];
 }
 
-// type Props = {
-//   trainSchedule: TrainSchedule[];
-// };
-
 const homePages: React.FC = () => {
   const navigate = useNavigate();
   const [trainSchedules, setTrainSchedules] = useState<TrainSchedule[]>([]);
@@ -37,6 +31,7 @@ const homePages: React.FC = () => {
   const [departureDateFilter, setDepartureDateFilter] = useState("");
   const BASE_URL = "https://train-ticket-booking-app-pxmd.onrender.com";
 
+  //will fetch the train data based on {origin, destination, departureDate} params
   useEffect(() => {
     const fetchTrainSchedules = () => {
       Axios.get(`${BASE_URL}/api/trains`, {
@@ -54,11 +49,12 @@ const homePages: React.FC = () => {
         });
     };
     fetchTrainSchedules();
-    const fetchIntervalId = setInterval(fetchTrainSchedules, 6000);
+    const fetchIntervalId = setInterval(fetchTrainSchedules, 6000); // will call the fetchTrainSchedules() every 6 second
     return () => clearInterval(fetchIntervalId);
   }),
     [];
 
+  // After the user click the button -> It wil transfer the data into PaymentPages
   const handleClick = (train: TrainSchedule) => {
     navigate("/trainSelection", {
       state: {
@@ -72,7 +68,6 @@ const homePages: React.FC = () => {
         price: train.price,
       },
     });
-    console.log(train._id);
   };
 
   const handleFilterClick = () => {
@@ -84,7 +79,6 @@ const homePages: React.FC = () => {
   return (
     <div>
       <div className=" inline-flex space-x-3">
-        {/* <TODO : FIX THE SEARCH FUNCTION https://www.youtube.com/watch?v=sWVgMcz8Q44/> */}
         <Search
           originTypeFilter={originTypeFilter}
           destinationTypeFilter={destinationTypeFilter}
@@ -95,7 +89,6 @@ const homePages: React.FC = () => {
         />
         <Button onClick={handleFilterClick}> Search </Button>
       </div>
-      <div>{/* <TrainTable /> */}</div>
       <div>
         <table className=" w-full border-separate border-spacing-2">
           <thead>

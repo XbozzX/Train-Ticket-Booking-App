@@ -85,7 +85,6 @@ const TrainResults: React.FC = () => {
   return (
     <div>
       <div className=" inline-flex space-x-3">
-        {/* <TODO : FIX THE SEARCH FUNCTION https://www.youtube.com/watch?v=sWVgMcz8Q44/> */}
         <Search
           originTypeFilter={originTypeFilter}
           destinationTypeFilter={destinationTypeFilter}

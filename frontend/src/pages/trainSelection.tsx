@@ -31,8 +31,6 @@ const trainSelection: React.FC = () => {
   const [coachSelector, setCoachSelector] = useState<string>("A");
   const { trainId } = location.state || {};
   const BASE_URL = "https://train-ticket-booking-app-pxmd.onrender.com";
-  // console.log(trainId);
-  // console.log(trainSchedules);
 
   useEffect(() => {
     Axios.get(`${BASE_URL}/api/trains/${trainId}`)

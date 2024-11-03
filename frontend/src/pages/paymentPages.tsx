@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Axios from "axios";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 interface Seat {
   train_Number: string;
@@ -34,6 +42,7 @@ const paymentPages: React.FC = () => {
     setIsLoading(true);
     setIsSuccess(false);
 
+    //will update the seat_Status & seat_PaymentStatus data
     try {
       const response: any = await Axios.put(
         `${BASE_URL}/api/trains/${BookingDetails.trainId}/seats`,
@@ -47,6 +56,7 @@ const paymentPages: React.FC = () => {
       if (response && response.status === 200) {
         console.log("Booking successfully updated");
         navigate("/bookingSummary", {
+          // It wil transfer the data into BookingSummary Page
           state: {
             trainId: train.trainId,
             trainName: train.trainName,
@@ -75,9 +85,43 @@ const paymentPages: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold mb-8">Payment Page</h1>
-      <p>trainId:{BookingDetails.trainId}</p>
-      <p>trainName:{BookingDetails.trainName}</p>
+      <h1 className="text-3xl font-bold mb-8">Payment Details</h1>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Train Name</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Origin</TableHead>
+            <TableHead>Destination</TableHead>
+            <TableHead>Departure Date</TableHead>
+            <TableHead>Departure Time</TableHead>
+            <TableHead>Arrival Time</TableHead>
+            <TableHead>Coaches</TableHead>
+            <TableHead>Seat Number</TableHead>
+            <TableHead className="text-right">Amount</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell className="font-medium">
+              {BookingDetails.trainName}
+            </TableCell>
+            <TableCell>Paid</TableCell>
+            <TableCell>{BookingDetails.origin}</TableCell>
+            <TableCell>{BookingDetails.destination}</TableCell>
+            <TableCell>{BookingDetails.departureDate}</TableCell>
+            <TableCell>{BookingDetails.departureTime}</TableCell>
+            <TableCell>{BookingDetails.arrivalTime}</TableCell>
+            <TableCell>{BookingDetails.selectedSeat.train_Number}</TableCell>
+            <TableCell>{BookingDetails.selectedSeat.seat_Number}</TableCell>
+            <TableCell className="text-right">
+              RM {BookingDetails.price}
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+
+      {/* <p>trainName:{BookingDetails.trainName}</p>
       <p>origin:{BookingDetails.origin}</p>
       <p>destination:{BookingDetails.destination}</p>
       <p>departureDate:{BookingDetails.departureDate}</p>
@@ -87,7 +131,7 @@ const paymentPages: React.FC = () => {
       <p>train_Number:{BookingDetails.selectedSeat.train_Number}</p>
       <p>seat_Number:{BookingDetails.selectedSeat.seat_Number}</p>
       <p>seat_Status:{BookingDetails.selectedSeat.seat_Status}</p>
-      <p>seat_PaymentStatus:{BookingDetails.selectedSeat.seat_PaymentStatus}</p>
+      <p>seat_PaymentStatus:{BookingDetails.selectedSeat.seat_PaymentStatus}</p> */}
       {isLoading ? (
         <div className="w-64 h-6 bg-gray-300 rounded-lg overflow-hidden mb-4">
           <div

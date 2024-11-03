@@ -1,6 +1,14 @@
 import React from "react";
 import { Button } from "@/components/ui/button.tsx";
 import { useNavigate, useLocation } from "react-router-dom";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 interface Seat {
   train_Number: string;
@@ -24,16 +32,52 @@ interface BookingDetailsProps {
 const bookingSummary: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  // const { id } = useParams();
   const BookingDetails = location.state as BookingDetailsProps;
 
+  // will redirect to Home Pages
   const handleConfirmClick = () => {
     navigate("/");
   };
 
   return (
-    <div className=" p-4">
-      <h2 className=" text-lg font-bold"> Booking Summary</h2>
+    <div>
+      <h2 className=" text-lg font-bold"> Booking Details</h2>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Train Name</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Origin</TableHead>
+            <TableHead>Destination</TableHead>
+            <TableHead>Departure Date</TableHead>
+            <TableHead>Departure Time</TableHead>
+            <TableHead>Arrival Time</TableHead>
+            <TableHead>Coaches</TableHead>
+            <TableHead>Seat Number</TableHead>
+            <TableHead className="text-right">Amount</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell className="font-medium">
+              {BookingDetails.trainName}
+            </TableCell>
+            <TableCell>Paid</TableCell>
+            <TableCell>{BookingDetails.origin}</TableCell>
+            <TableCell>{BookingDetails.destination}</TableCell>
+            <TableCell>{BookingDetails.departureDate}</TableCell>
+            <TableCell>{BookingDetails.departureTime}</TableCell>
+            <TableCell>{BookingDetails.arrivalTime}</TableCell>
+            <TableCell>{BookingDetails.selectedSeat.train_Number}</TableCell>
+            <TableCell>{BookingDetails.selectedSeat.seat_Number}</TableCell>
+            <TableCell className="text-right">
+              RM {BookingDetails.price}
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+
+      {/* <h2 className=" text-lg font-bold"> Booking Summary</h2>
       <p>trainId:{BookingDetails.trainId}</p>
       <p>trainName:{BookingDetails.trainName}</p>
       <p>origin:{BookingDetails.origin}</p>
@@ -43,7 +87,7 @@ const bookingSummary: React.FC = () => {
       <p>arrivalTime:{BookingDetails.arrivalTime}</p>
       <p>price:{BookingDetails.price}</p>
       <p>train_Number:{BookingDetails.selectedSeat.train_Number}</p>
-      <p>seat_Number:{BookingDetails.selectedSeat.seat_Number}</p>
+      <p>seat_Number:{BookingDetails.selectedSeat.seat_Number}</p> */}
       <div>
         <Button onClick={handleConfirmClick}>Confirm</Button>
       </div>
